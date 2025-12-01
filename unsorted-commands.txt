@@ -1,0 +1,19 @@
+Unsorted Cheat Sheet
+=========================================================================================
+
+Postrgres Dump
+-----------------------------------------------------------------------------------------
+pg_dump -F p -f user_registry_export.sql -t my_user --column-inserts --data-only registry
+
+Check mysql connection
+-----------------------------------------------------------------------------------------
+# From remote host
+# sudo apt install mysql-client
+mysql -h <ip/hostname> -P <mysql_port> -u <username> -p'<password>'
+mysql -h <ip/hostname> -P <mysql_port> -u <username> -p
+
+# From local host
+mysql -u root -p'<password'
+mysql -u root -p
+
+

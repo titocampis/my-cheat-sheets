@@ -1,0 +1,92 @@
+Bash Cheat Sheet
+=========================================================================================
+
+cats
+-----------------------------------------------------------------------------------------
+# Overrides
+cat << EOF > holaquease.txt
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
+EOF
+
+# Append
+cat << EOF >> holaquease.txt
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
+EOF
+
+nmap
+-----------------------------------------------------------------------------------------
+nmap -p <port> <ip/hostname> # Check port
+nmap -sT -T Aggressive <ip/hostname> # Full port scan
+nmap -sT -T Aggressive -Pn <ip/hostname> # When pings disabled full port scan
+nc -zv <ip/hostname> <port> # Check port with nc
+telnet <ip/hostname> <port> # Check port using telnet
+
+generate password
+-----------------------------------------------------------------------------------------
+# Linux
+str=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 12); echo "$str"; echo "$str" | xclip -selection clipboard
+tr -dc 'A-Za-z0-9!@#$%&*()_+-=;:,.?' </dev/urandom | head -c 12 | tee >(xclip -selection clipboard)
+
+# WSL
+str=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 12); echo "$str"; echo "$str" | clip.exe
+tr -dc 'A-Za-z0-9!@#$%&*()_+-=;:,.?' </dev/urandom | head -c 12 | tee >(clip.exe)
+
+cp / mv
+-----------------------------------------------------------------------------------------
+mv -v  /path/from/source /path/to/dest 
+cp -rpv /path/from/source/ /path/to/dest
+
+rsync
+-----------------------------------------------------------------------------------------
+# Local
+rsync -avP /path/from/source/ /path/to/dest 
+
+# Remote -> Remember that some dests needs permissions (root)
+rsync -avzP /path/from/local/source/ titocampis@hostx:/path/to/remote/dest
+
+scp --> Remember that takes config from ~/.ssh/config
+-----------------------------------------------------------------------------------------
+cp -rv directory/ /destination/ # Do it locally
+scp -rvCp user@ssh_config_host:/path/to/folder/ /local/path/to/folder # Send to remote compressed data
+
+tar - zip / untar - unzip
+-----------------------------------------------------------------------------------------
+# Compress
+tar -czvf name-of-archive.tar.gz /path/to/directory-or-file # Single files or directories
+tar -czvf archive.tar.gz file1 file2 file3 # Multiple files or directories
+zip archive.zip filename # Single file
+zip archive.zip file1 file2 file3 # Multiple files
+zip -r archive.zip /path/to/directory # Directory 
+
+# Decompress
+tar -xzvf archive.tar.gz -C /path/to/directory/to/extract
+unzip archive.zip -d /path/to/destination
+
+systemctl
+-----------------------------------------------------------------------------------------
+systemctl status <service_name> # Check service status / start / stop / enable / disable
+systemctl --type=service --state=running # Check services running
+journalctl -xeu <service_name>.service # Check service logs
+
+find
+-----------------------------------------------------------------------------------------
+find . -type f -name "*compile_commands*"
+
+Pending
+-----------------------------------------------------------------------------------------
+- sed
+- find
+- echo
+- curl
+- make one for nvim shortcuts
+
