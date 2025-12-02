@@ -1,8 +1,49 @@
 Bash Cheat Sheet
 =========================================================================================
+processes
+-----------------------------------------------------------------------------------------
+ps waux | grep -i "proces_name"
+kill -9 <pid>
+
+symlinks
+-----------------------------------------------------------------------------------------
+ln -s <target> <link_name>
+unlink <link_name> # rm -rf <link_name>
+
+aliases
+-----------------------------------------------------------------------------------------
+alias # Get all aliases
+alias kcc="kubectl config" # Ephimeral, to make it permanent add it to ~/.zshrc or ~/.bashrc
+
+tee -> print command output to terminal and file
+-----------------------------------------------------------------------------------------
+echo "Hello" | tee output.txt
+
+diff -> File comparator
+-----------------------------------------------------------------------------------------
+diff /path/to/file1 /path/to/file2
+diff -y # Side to side
+diff -r /path/to/dir1 /path/to/dir2 # Recursively
+diff -q /path/to/dir1 /path/to/dir2 # Report only when differ 
+diff -s /path/to/dir1 /path/to/dir2 # Report when they are the same
+diff -b /path/to/dir1 /path/to/dir2 # Ignore changes in white spaces
+diff -w /path/to/dir1 /path/to/dir2 # Ignore all white spaces
+
+grep
+-----------------------------------------------------------------------------------------
+grep -E # Accept regular expressions
+grep -e # Matching patterns
+grep -i # Ignorecase
+grep -rni . # Search in full directory recursively
 
 cats
 -----------------------------------------------------------------------------------------
+# Show line number
+cat -n
+
+head/tail -n <number_lines> <filename>
+tail -f <filename>
+
 # Overrides
 cat << EOF > holaquease.txt
 Types: deb
@@ -23,9 +64,24 @@ Architectures: amd64,arm64,armhf
 Signed-By: /usr/share/keyrings/microsoft.gpg
 EOF
 
+reverse search
+-----------------------------------------------------------------------------------------
+Ctrl + R
+Ctrl + s
+Esc / Ctrl + g
+
+tmux
+-----------------------------------------------------------------------------------------
+tmux -L alex-session -2 # Start new session
+tmux -L alex-session a # Attach to a session
+tmux -L alex-session a -d # Attach to a session and close the rest
+tmux -L mycustomsocket kill-session # Kill a session
+
 nmap
 -----------------------------------------------------------------------------------------
 nmap -p <port> <ip/hostname> # Check port
+nmap -p <port1>,<port2> <ip/hostname> # Check ports
+nmap -p <port1>-<portn> <ip/hostname> # Check array of ports
 nmap -sT -T Aggressive <ip/hostname> # Full port scan
 nmap -sT -T Aggressive -Pn <ip/hostname> # When pings disabled full port scan
 nc -zv <ip/hostname> <port> # Check port with nc
@@ -44,7 +100,9 @@ tr -dc 'A-Za-z0-9!@#$%&*()_+-=;:,.?' </dev/urandom | head -c 12 | tee >(clip.exe
 cp / mv
 -----------------------------------------------------------------------------------------
 mv -v  /path/from/source /path/to/dest 
+mv -vt /path/to/dest/dir /path/from/file1 /path/from/file2 /path/from/file3
 cp -rpv /path/from/source/ /path/to/dest
+cp -vt /path/to/dest/dir /path/from/file1 /path/from/file2 /path/from/file3
 
 rsync
 -----------------------------------------------------------------------------------------
@@ -56,7 +114,7 @@ rsync -avzP /path/from/local/source/ titocampis@hostx:/path/to/remote/dest
 
 scp --> Remember that takes config from ~/.ssh/config
 -----------------------------------------------------------------------------------------
-cp -rv directory/ /destination/ # Do it locally
+scp -rv directory/ /destination/ # Do it locally
 scp -rvCp user@ssh_config_host:/path/to/folder/ /local/path/to/folder # Send to remote compressed data
 
 tar - zip / untar - unzip
@@ -80,13 +138,49 @@ journalctl -xeu <service_name>.service # Check service logs
 
 find
 -----------------------------------------------------------------------------------------
-find . -type f -name "*compile_commands*"
+find /path/to/dir -name "*compile_commands*" -ls # Find files and directories
+find /path/to/dir -type f -name "*compile_commands*" -ls # Find files
+find /path/to/dir -type d -name "*compile_commands*" -ls # Find directories
+
+sed -> Replace in file
+-----------------------------------------------------------------------------------------
+# Just print but not save into file
+sed "s/Microsoft Windows/GNU Linux/" fichero.txt # Replace 1st occurrence
+
+# Save changes into file
+sed -i "s/Microsoft Windows/GNU Linux/g" fichero.txt # Replace 1st occurrence
+sed -i "s/Microsoft Windows/GNU Linux/g" fichero.txt # Replace all occurrences
+sed -i "s/Microsoft Windows/GNU Linux/3g" fichero.txt # Replace first 3 occurrences
+sed -i "s/Microsoft Windows/GNU Linux/gI" fichero.txt # Case insensitive
+sed -i "s/Windows\s/Linux /g" fichero.txt # Exact match with no spaces
+
+awk
+-----------------------------------------------------------------------------------------
+awk ’{ print $1 }’ <filename> # Print on filename the 1st field of each line separated by space
+awk -F ":" ’{ print $3 }’ <filename> # Print on filename the 3rd field of each line separated by ':'
+awk -F "," ’{ print $2, $3 }’ <filename> # Print on filename the 2nd and the 3rd field of each line separated by ','
+
+base64
+-----------------------------------------------------------------------------------------
+echo -n $PASSWORD_CLEAR | base64 # Code
+echo -n $PASSWORD_CLEAR | base64 -d # Decode
+
+jq
+-----------------------------------------------------------------------------------------
+cat file.json | jq "." # parse beautiful json
+cat file.json | jq ".field" # parse beatiful json from field
 
 Pending
 -----------------------------------------------------------------------------------------
-- sed
-- find
 - echo
+- dns check (dig/nslookup)
+- resolvconf
+- generate ssh keys
+- ssh with private key and with proxy
+- sfpt
+- ports exposed -> lsof or netstat
+- eval / ssh agent
+- etchosts
 - curl
 - make one for nvim shortcuts
 
