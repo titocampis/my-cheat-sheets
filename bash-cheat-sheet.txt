@@ -170,6 +170,12 @@ jq
 cat file.json | jq "." # parse beautiful json
 cat file.json | jq ".field" # parse beatiful json from field
 
+wget
+-----------------------------------------------------------------------------------------
+# The url can be known with copy raw link
+wget https://releases.ubuntu.com/24.04/ubuntu-24.04.3-desktop-amd64.iso \
+    -O /mnt/kvm/isos/ubuntu-24.04.3-desktop-amd64.iso
+
 Pending
 -----------------------------------------------------------------------------------------
 - echo
