@@ -1,0 +1,13 @@
+Nvim Cheat Sheet
+===============================================================================
+
+Plugins with lazy
+-------------------------------------------------------------------------------
+:Lazy update # Update all plugins
+:Lazy clean # Clean unused plugins
+
+Plugins without lazy
+-------------------------------------------------------------------------------
+:PlugUpdate # Update all plugins
+:PlugClean # Clean unused plugins
+

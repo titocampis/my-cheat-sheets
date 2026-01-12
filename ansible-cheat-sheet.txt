@@ -1,8 +1,8 @@
 Ansible Cheat Sheet
-=========================================================================================
+================================================================================
 
 Debug
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 - name: Debug vars
   debug:
     var: env
@@ -12,13 +12,13 @@ Debug
     msg: "Here is my template: {{ lookup('ansible.builtin.template', 'templates/daemon.json.j2') }}"
 
 Galaxy
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 ansible-galaxy install -r requirements.yaml -p /playbooks/roles
 ansible-galaxy role install -r requirements.yaml -p /playbooks/roles
 ansible-galaxy collection install -r requirements.yaml -p playbooks/roles
 
 --extra-vars
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 ansible_ssh_pass='' 
 ansible_sudo_pass='' 
 ansible_user=''
