@@ -10,6 +10,10 @@ symlinks
 ln -s <target> <link_name>
 unlink <link_name> # rm -rf <link_name>
 
+set hostname
+--------------------------------------------------------------------------------
+hostnamectl set-hostname <hostname>
+
 aliases
 --------------------------------------------------------------------------------
 alias # Get all aliases
