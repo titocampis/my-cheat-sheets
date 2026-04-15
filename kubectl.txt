@@ -1,0 +1,23 @@
+Kubectl Cheat Sheet
+===============================================================================
+
+Kubectl get pods
+-------------------------------------------------------------------------------
+# Get pods in a node
+kubectl get po --all-namespaces --field-selector spec.nodeName=<node_name>
+
+kubectl get po -A # Get pods from all namespaces
+
+kubectl -n <namespace_name> get po # Get pods from specific namespace
+
+Kubectl Config
+-------------------------------------------------------------------------------
+# Use specific kubeconfig file
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+kubectl ... --kubeconfig=/etc/rancher/k3s/k3s.yaml
+
+kubectl config get-context # See all configured contexts
+
+kubectl config use-context <context_name> # Use specific context
+
+kubect set-context --current --namespace=<namespace_name> # Set namespace in specific context

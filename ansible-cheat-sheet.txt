@@ -17,9 +17,29 @@ ansible-galaxy install -r requirements.yaml -p /playbooks/roles
 ansible-galaxy role install -r requirements.yaml -p /playbooks/roles
 ansible-galaxy collection install -r requirements.yaml -p playbooks/roles
 
---extra-vars
+Vault
 --------------------------------------------------------------------------------
-ansible_ssh_pass='' 
-ansible_sudo_pass='' 
-ansible_user=''
+# Encrypt string with password stored in file
+ansible-vault encrypt_string 'qwertyuiop' --vault-password-file=sensitive_data_password.txt
+
+# Edit vault
+ansible-vault edit path/to/vault.yaml --vault-password-file=vault_password.txt
+
+# View vault
+ansible-vault view path/to/vault.yaml --vault-password-file=sensitive_data_password.txt
+
+# How to insert password
+--vault-password-file=sensitive_data_password.txt # Best practice
+--ask-vault-pass # Ask password each time, not allowed through terminal
+
+Other useful flags
+--------------------------------------------------------------------------------
+--extra-vars ansible_ssh_pass='' 
+--extra-vars ansible_sudo_pass='' 
+--extra-vars ansible_user=''
+--start-at-task="Check if cert-manager NS exists"
+--diff # To show details
+--check # To don't execute tasks
+--limit <inventory_hostname_1>,<inventory_hostname_2> # To do it just in this host
+--tags <tag_1,tag_2> # To execute different tasks
 
