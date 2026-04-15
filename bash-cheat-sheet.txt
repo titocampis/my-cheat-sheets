@@ -202,6 +202,46 @@ eval / ssh-agent
 eval $(ssh-agent -s) # Start the ssh-agent
 ssh-add ~/.ssh/<ssh-key> # Add private keys to the agent
 
+apt (debian) / dnf (rhel)
+--------------------------------------------------------------------------------
+# Check available updates
+sudo apt update                          # Refresh package metadata (check for updates)
+dnf check-update                         # Check available updates (similar visibility)
+dnf makecache                            # Refresh metadata cache (closer to apt update)
+
+# Upgrade packages
+sudo apt upgrade -y                      # Upgrade all packages to latest versions
+sudo dnf upgrade -y                      # Upgrade all packages
+
+# Install / remove packages
+sudo apt install <pkg1> <pkg2>           # Install packages
+sudo dnf install <pkg1> <pkg2>           # Install packages
+sudo apt remove <pkg1> <pkg2>            # Remove installed packages (keep config files)
+sudo dnf remove <pkg1> <pkg2>            # Remove packages
+
+# Clean packages
+sudo apt clean                           # Remove downloaded .deb files (cache)
+sudo dnf clean all                       # Clean all cached metadata and packages
+
+# Clean dependencies
+sudo apt autoremove                      # Remove unused dependencies
+sudo dnf autoremove                      # Remove unneeded dependencies
+
+# Check available versions of a package
+sudo apt-cache madison <package_name>         # Show available versions of a package
+sudo dnf list --showduplicates <package_name> # Show all available versions
+
+# GPG keys
+sudo gpg --show-keys /etc/apt/keyrings/example.gpg # Inspect a key
+sudo curl -fsSL https://example.com/repo.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/example.gpg # Add GPG key to system
+deb [signed-by=/etc/apt/keyrings/example.gpg] https://example.com repo main # Repo reference # Add GPG key to keyring
+sudo rm /etc/apt/keyrings/example.gpg # Delete gpg key
+---
+sudo rpm -q gpg-pubkey # Show installed keys
+sudo rpm -qi gpg-pubkey-<id> # Inspect a key
+sudo rpm --import https://example.com/RPM-GPG-KEY # Add GPG key to keyring
+sudo rpm -e gpg-pubkey-<id> # Remove GPGKey to find the id run: $ sudo rpm -q gpg-pubkey
+
 Pending
 --------------------------------------------------------------------------------
 - echo
