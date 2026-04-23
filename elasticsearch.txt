@@ -1,0 +1,27 @@
+ElasticSearch Cheat Sheet
+===============================================================================
+
+# Check cluster status
+curl -u elastic:$pwd_elastic -k https://localhost:9200/_cluster/health?pretty
+
+# Check indexes 
+curl -u elastic:"$pwd_elastic" -k "https://localhost:9200/_cat/indices?h=index,creation.date.string,docs.count,store.size&s=creation.date:asc"
+
+# Remove index
+curl -u elastic:$pwd_elastic -X DELETE -k "https://localhost:9200/<index>"
+
+# Forzar reasignación de shards
+curl -u elastic:$pwd_elastic -X POST -k "https://localhost:9200/_cluster/reroute?retry_failed=true"
+
+# Consultar parametros de la configuracion
+curl -u elastic:$pwd_elastic -k "https://localhost:9200/_cluster/settings?include_defaults=true&pretty"
+
+# Cambiar parametros de la configuracion
+curl -u elastic:$pwd_elastic -X PUT -k "https://localhost:9200/_cluster/settings" -H 'Content-Type: application/json' -d '
+{
+  "transient": {
+    "cluster.routing.allocation.allow_rebalance": "always",
+    "cluster.routing.rebalance.enable": "all"
+  }
+}'
+

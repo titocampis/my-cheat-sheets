@@ -1,20 +1,21 @@
 Bash Cheat Sheet
 ================================================================================
-processes
+
+Processes
 --------------------------------------------------------------------------------
 ps waux | grep -i "proces_name"
 kill -9 <pid>
 
-symlinks
+Symlinks
 --------------------------------------------------------------------------------
 ln -s <target> <link_name>
 unlink <link_name> # rm -rf <link_name>
 
-set hostname
+Set hostname
 --------------------------------------------------------------------------------
 hostnamectl set-hostname <hostname>
 
-aliases
+Aliases
 --------------------------------------------------------------------------------
 alias # Get all aliases
 alias kcc="kubectl config" # Ephimeral, to make it permanent add it to ~/.zshrc or ~/.bashrc
@@ -68,7 +69,7 @@ Architectures: amd64,arm64,armhf
 Signed-By: /usr/share/keyrings/microsoft.gpg
 EOF
 
-reverse search
+Reverse search
 --------------------------------------------------------------------------------
 Ctrl + r
 Ctrl + s
@@ -91,7 +92,7 @@ nmap -sT -T Aggressive -Pn <ip/hostname> # When pings disabled full port scan
 nc -zv <ip/hostname> <port> # Check port with nc
 telnet <ip/hostname> <port> # Check port using telnet
 
-generate password
+Generate passwords
 --------------------------------------------------------------------------------
 # Linux
 str=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 12); echo "$str"; echo "$str" | xclip -selection clipboard
