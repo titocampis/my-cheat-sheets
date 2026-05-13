@@ -6,3 +6,11 @@ rsync -avp --progress /media/titocampis/80F9-9B4D/working-studies/ ~/backups-80F
 
 # Backup working teacher
 rsync -avp --progress /media/titocampis/80F9-9B4D/working-teacher/ ~/backups-80F9-9B4D/working-teacher/ # --delete
+
+# ---
+
+# Load into pen drive studies master pedagogia
+rsync -avp --progress ~/studies/master-pedagogia/ /media/titocampis/80F9-9B4D/studies/master-pedagogia/ # --delete
+
+# Load into pen drive studies master pedagogia
+rsync -avp --progress ~/studies/psico/ /media/titocampis/80F9-9B4D/studies/psico/ # --delete
