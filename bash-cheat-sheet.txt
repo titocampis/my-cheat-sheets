@@ -149,9 +149,9 @@ journalctl -xeu <service_name>.service # Check service logs
 
 find
 --------------------------------------------------------------------------------
-find /path/to/dir -name "*compile_commands*" -ls # Find files and directories
-find /path/to/dir -type f -name "*compile_commands*" -ls # Find files
-find /path/to/dir -type d -name "*compile_commands*" -ls # Find directories
+find /path/to/dir -iname "*compile_commands*" -ls # Find files and directories insensitive
+find /path/to/dir -type f -iname "*compile_commands*" -ls # Find files insensitive
+find /path/to/dir -type d -iname "*compile_commands*" -ls # Find directories insensitive
 
 sed -> Replace in file
 --------------------------------------------------------------------------------
