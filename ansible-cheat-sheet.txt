@@ -34,12 +34,16 @@ ansible-vault view path/to/vault.yaml --vault-password-file=sensitive_data_passw
 
 Other useful flags
 --------------------------------------------------------------------------------
---extra-vars ansible_ssh_pass='' 
---extra-vars ansible_sudo_pass='' 
---extra-vars ansible_user=''
+-e ansible_ssh_pass='' # --extra-vars
+-e ansible_sudo_pass='' # --extra-vars
+-e ansible_user='' # --extra-vars
 --start-at-task="Check if cert-manager NS exists"
 --diff # To show details
 --check # To don't execute tasks
 --limit <inventory_hostname_1>,<inventory_hostname_2> # To do it just in this host
 --tags <tag_1,tag_2> # To execute different tasks
+
+Add users to remove
+--------------------------------------------------------------------------------
+ansible-playbook --diff --tags base-users -e ansible_user=pepito -e '{"base_users_rm":["epi","blas","elmo"]}' --vault-password-file=<vault_file>.txt -i inventories/<inventory_name>.ini plays/<playbook_name>.yaml
 
