@@ -165,6 +165,9 @@ sed -i "s/Microsoft Windows/GNU Linux/3g" fichero.txt # Replace first 3 occurren
 sed -i "s/Microsoft Windows/GNU Linux/gI" fichero.txt # Case insensitive
 sed -i "s/Windows\s/Linux /g" fichero.txt # Exact match with no spaces
 
+# Replace in many files without confirm DANGEROUS!!!!
+replace='Alex'; grep -rlZi "$replace" . | xargs -0 sed -i "s|$replace|pedro|gI"
+
 awk
 --------------------------------------------------------------------------------
 awk ’{ print $1 }’ <filename> # Print on filename the 1st field of each line separated by space
