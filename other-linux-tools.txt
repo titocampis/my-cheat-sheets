@@ -1,0 +1,22 @@
+Other Linux Tools Cheat Sheet
+===============================================================================
+
+FFMpeg
+-------------------------------------------------------------------------------
+# Trim audio or songs
+ffmpeg -ss 30 -to 60 -i necio-intro.mp4 -c copy necio-2.mp3
+
+PDF
+-------------------------------------------------------------------------------
+# Apend images into a single PDF
+img2pdf 1.jpeg 2.jpeg 3.jpeg 4.jpeg 5.jpeg 6.jpeg 7.png  -o <pdf_name>.pdf
+
+# Gather PDFs
+pdfunite pagina-10.pdf pagina-11.pdf salida.pdf
+
+# Trim pdf (-f: first page, -l: last page)
+pdfseparate -f 10 -l 20 archivo.pdf pagina-%d.pdf
+
+# Find for a word inside all PDFs of a folder
+pdfgrep -i -r "<word>" .
+
