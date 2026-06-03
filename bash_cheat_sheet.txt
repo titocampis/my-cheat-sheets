@@ -141,12 +141,6 @@ zip -r archive.zip /path/to/directory # Directory
 tar -xzvf archive.tar.gz -C /path/to/directory/to/extract
 unzip archive.zip -d /path/to/destination
 
-systemctl
---------------------------------------------------------------------------------
-systemctl status <service_name> # Check service status / start / stop / enable / disable
-systemctl --type=service --state=running # Check services running
-journalctl -xeu <service_name>.service # Check service logs
-
 find
 --------------------------------------------------------------------------------
 find /path/to/dir -iname "*compile_commands*" -ls # Find files and directories insensitive

@@ -1,0 +1,15 @@
+Kubernetes
+===============================================================================
+
+Etcd
+--------------------------------------------------------------------------------
+Use to run as a service on the master nodes or as a pod in the kube-system namespace
+
+# Check cluster
+ETCDCTL_API=3 etcdctl endpoint status -w table  --endpoints=<IP1>:2379,<IP2>:2379,<IP3>:2379   --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   --cacert=/etc/kubernetes/pki/etcd/ca.crt
+
+Api Server
+--------------------------------------------------------------------------------
+Use to run as a pod in the kube-system namespace, so to inspect logs check the pod logs. Inside the container you can do:
+journalctl -xeu kube-apiserver
+

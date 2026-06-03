@@ -1,0 +1,42 @@
+Linux Logging Cheat Sheet
+===============================================================================
+
+Systemctl
+-------------------------------------------------------------------------------
+# Status
+systemctl status <service_name> # Check service status
+systemctl status --no-pager <service_name> # Avoid interaction
+systemctl status <service_name> > output.txt # Put the output into file
+
+# Others
+systemctl start <service_name>
+systemctl stop <service_name>
+
+systemctl restart <service_name> # Same as stop and start
+
+# Reapply the service configuration without stopping it (ex: systemctl reload nginx). Does not apply systemd file config changes.
+systemctl reload <service_name>
+
+systemctl enable <service_name>
+systemctl disable <service_name>
+
+# Check all services running
+systemctl --type=service --state=running # Check services running
+
+Journalctl
+--------------------------------------------------------------------------------
+# Check service (-u) all logs
+journalctl -xu <service_name>
+
+# Check service (-u) latest (-e) logs
+journalctl -xeu <service_name> 
+
+# Avoid interacion
+journalctl -xeu <service_name> --no-pager
+
+# Check service logs from time
+journalctl -xeu <service_name> --since "2026-06-03 00:00:00"
+
+# Check services logs in time
+journalctl -xeu <service_name> --since "2026-06-03 00:00:00" --until "2026-06-03 23:59:59"
+
