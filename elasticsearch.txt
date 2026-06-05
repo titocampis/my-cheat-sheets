@@ -4,6 +4,9 @@ ElasticSearch Cheat Sheet
 # Check cluster status
 curl -u elastic:$pwd_elastic -k https://localhost:9200/_cluster/health?pretty
 
+# Check nodes
+curl -k -u "elastic:${ELASTIC_PASSWORD}" https://127.0.0.1:9200/_cat/nodes?v
+
 # Check indexes 
 curl -u elastic:"$pwd_elastic" -k "https://localhost:9200/_cat/indices?h=index,creation.date.string,docs.count,store.size&s=creation.date:asc"
 

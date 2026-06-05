@@ -1,0 +1,30 @@
+ElasticSearch Cheat Sheet
+===============================================================================
+
+Rebase
+-------------------------------------------------------------------------------
+# Go to your branch
+git checkout <working_branch>
+
+# Fetch origin
+git fetch origin
+
+# Start the rebase
+git rebase origin/<main_branch>
+
+# For each conflicting commit 
+-----------
+# Manually fix all the conflicts
+...
+
+# Add the corrected files
+git add <file_names>
+
+# Continue with rebase
+git rebase --continue
+
+# If there is more commit conflicts repeat the process
+----------
+
+# When you have finished with the conflicts push the changes
+git push --force-with-lease
