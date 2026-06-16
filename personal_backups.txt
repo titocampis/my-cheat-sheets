@@ -1,21 +1,51 @@
-# Backup teacher
-rsync -avp --progress /media/titocampis/80F9-9B4D/teacher/ ~/backups/backups-80F9-9B4D/teacher/ # --delete
+Personal Backups
+==============================================================================
 
-# Backup working studies
-rsync -avp --progress /media/titocampis/80F9-9B4D/working-studies/ ~/backups/backups-80F9-9B4D/working-studies/ # --delete
+Push music into your phone
+-------------------------------------------------------------------------------
+1. Click 8 times into Settings / About phone / Software information / Build number
 
-# Backup working teacher
-rsync -avp --progress /media/titocampis/80F9-9B4D/working-teacher/ ~/backups/backups-80F9-9B4D/working-teacher/ # --delete
+2. Enter your pin
 
-# ---
+3. Allow development settings
 
-# Load into pen drive studies master professorat 
-rsync -avp --progress ~/studies/master-professorat/ /media/titocampis/80F9-9B4D/studies/master-professorat/ # --delete
+4. Go into Settings / Developer options and check it is 'On'
 
-# Load into pen drive studies master professorat
-rsync -avp --progress ~/studies/psico/ /media/titocampis/80F9-9B4D/studies/psico/ # --delete
+5. Enable 'USB debugging'
 
-# ---
+6. Connect phone to the PC
+
+7. Accept transfer files
+
+8. Run the following command to check the device is available
+adb devices
+
+9. Run the following command to know the files into the device folder
+adb shell ls /sdcard/Music
+
+10. Push the files into device folder
+adb push ~/music/* /sdcard/Music/
+
+11. Unplug the phone
+
+12. Disable 'Developer options'
+
+Other backups
+-------------------------------------------------------------------------------
+# Backup ebooks, studies/videos, teacher, sport...
+rsync -avp --progress ~/ebooks/ /media/titocampis/Elements/ebooks-bak/ # --delete
+
+# Backup studies psico
+rsync -avp --progress ~/studies/psico/ /media/titocampis/INTENSO/studies-bak/psico # --delete
+
+# Backup studies master
+rsync -avp --progress ~/studies/master-professorat/ /media/titocampis/INTENSO/studies-bak/master-professorat # --delete
+
+# Backup working
+rsync -avp --progress /media/titocampis/INTENSO/working/ ~/working-bak/ 
+
+Other commands
+-------------------------------------------------------------------------------
 # Change "-" by "_"
 for f in *; do [ -f "$f" ] && mv -- "$f" "${f//-/_}"; done
 

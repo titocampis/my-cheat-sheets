@@ -8,8 +8,14 @@ Use to run as a service on the master nodes or as a pod in the kube-system names
 # Check cluster
 ETCDCTL_API=3 etcdctl endpoint status -w table  --endpoints=<IP1>:2379,<IP2>:2379,<IP3>:2379   --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   --cacert=/etc/kubernetes/pki/etcd/ca.crt
 
+# Make a snapshot
+ETCDCTL_API=3  etcdctl snapshot save /path/to/etcd-snapshot.db  --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   --cacert=/etc/kubernetes/pki/etcd/ca.crt
+
+# Check the snapshot
+ETCDCTL_API=3 etcdutl snapshot status /path/to/etcd-snapshot.db -w table
+
 Api Server
 --------------------------------------------------------------------------------
-Use to run as a pod in the kube-system namespace, so to inspect logs check the pod logs. Inside the container you can do:
+# Use to run as a pod in the kube-system namespace, so to inspect logs check the pod logs. Inside the container you can do:
 journalctl -xeu kube-apiserver
 
