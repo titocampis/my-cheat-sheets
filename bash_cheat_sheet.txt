@@ -181,13 +181,15 @@ cat file.json | jq ".field" # parse beatiful json from field
 wget
 --------------------------------------------------------------------------------
 # The url can be known with copy raw link
-wget https://releases.ubuntu.com/24.04/ubuntu-24.04.3-desktop-amd64.iso \
-    -O /mnt/kvm/isos/ubuntu-24.04.3-desktop-amd64.iso
+wget https://releases.ubuntu.com/24.04/ubuntu-24.04.3-desktop-amd64.iso -O /mnt/kvm/isos/ubuntu-24.04.3-desktop-amd64.iso
 
 curl
 --------------------------------------------------------------------------------
 # Download from url
 curl -LO https://github.com/Azure/kubelogin/releases/download/v0.1.9/kubelogin-linux-amd64.zip
+
+# Download from url and select file
+curl -Lo prometheuss-agent-v3.12.0-linux-amd64.tar.gz https://github.com/prometheus/prometheus/releases/download/v3.12.0/prometheus-3.12.0.linux-amd64.tar.gz
 
 curl -k # Without checking certificates
 
